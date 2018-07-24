@@ -37,7 +37,7 @@ cp pyhesity.py `python -m site --user-site`
 Make sure to set this file as executable:
 
 ```bash
-chmmod +x jobMonitor.sh
+chmod +x jobMonitor.sh
 ```
 
 jobMonitor.sh will require some customization to work in your environment. Near the top of the script you will find some constants that should be set for your environment:
