@@ -56,7 +56,7 @@ while True:
                 stillRunning = False
             time.sleep(SLEEPTIME)
         lastRun = latestRun
-        f = open('lastrun','w')
+        f = open(RUNFOLDER + 'lastrun','w')
         f.write(str(lastRun))
         f.close()
     time.sleep(SLEEPTIME)

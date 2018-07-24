@@ -1,4 +1,6 @@
 Description=Cohesity Job Monitor Service
+[Unit]
+After=network.target
 
 [Service]
 Type=simple
