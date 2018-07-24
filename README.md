@@ -63,6 +63,8 @@ This is a systemd unit file to run the job monitor as a daemon. Supply the corre
 
 ```bash
 Description=Cohesity Job Monitor Service
+[Unit]
+After=network.target
 
 [Service]
 Type=simple
