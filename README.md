@@ -1,6 +1,6 @@
 # Cohesity Job Monitor
 
-Warning: this code is provided on a best effort basis by some dude and is not in any way officially supported or sanctioned by Cohesity. The code is intentionally kept simple (hard coded stuff) to retain value as example code (not to mention I was in a hurry).
+Warning: this code is provided on a best effort basis by some dude and is not in any way officially supported or sanctioned by Cohesity. The code is intentionally kept simple (hard coded stuff, lack of error checking) to retain value as example code (not to mention I was in a hurry).
 
 This python script monitors a Cohesity protection job and sends email alerts when the job starts and ends, along with the result (success, failed, canceled, etc).
 
