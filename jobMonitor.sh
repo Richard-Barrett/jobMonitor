@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 """Python script to monitor a protectionJob"""
 
+### v1.1 Updates - Aug 2018 -------------------------------------------
+### Added try/catch so script won't fail if cluster is down
+### moved apiauth statement into the while loop to avoid token expiring 
+
 from pyhesity import *
 import urllib, time, smtplib
 
@@ -8,7 +12,7 @@ VIP = '192.168.1.198'
 USERNAME = 'admin'
 DOMAIN = 'local'
 JOBNAME = 'VM Backup' 
-SLEEPTIME = 15 #seconds
+SLEEPTIME = 120 #seconds
 FROMADDR = 'jobMonitor@mydomain.net'
 TOADDR = 'unixguy@mydomain.com'
 RUNFOLDER = '/home/myusername/'
@@ -21,8 +25,6 @@ def sendMessage(msg):
     server.sendmail(FROMADDR, TOADDR, msg)
     server.quit()
 
-apiauth(VIP, USERNAME)
-
 f = open(RUNFOLDER + 'lastrun','r')
 lastRun = f.read()
 f.close()
@@ -33,6 +35,7 @@ print "Waiting for Cohesity Protection Job To Run..."
 
 while True:
     try:
+        apiauth(VIP, USERNAME)
         jobId = api('get', 'protectionJobs?names=' + urllib.quote_plus(JOBNAME))[0]['id']
         runs = api('get','protectionRuns?jobId=' + str(jobId))
         if 'startTimeUsecs' in runs[0]['backupRun']['stats']:
